@@ -1,0 +1,615 @@
+--Modify this script so that it meets the requirements of Assignment 3 
+--When done, complete these tasks
+--1. Save this file so that it can be submitted via ESP
+--2. Execute the contents of this file in ISQL Jr
+--3. Copy and paste the output from ISQL Jr into a file as described in the assignment document and submit via ESP
+prompt START OF OUTPUT SECTION
+prompt Student ID:    4949773
+prompt Student Name:  RONAK SHAH    
+
+prompt Student ID:    4963571
+prompt Student Name:  RABINDRA SAH 
+
+
+prompt Student ID:    6281192
+prompt Student Name:  BRIAN KEE WIN CHIA
+
+prompt --------------------------------------------------------------
+prompt Task 3.1
+prompt DROP ALL TABLES
+
+
+Drop Table Selection;
+Drop Table ActivityOffered;
+Drop Table StaffAssigned;
+Drop Table StaffSkills; 
+Drop Table Payment;
+Drop Table Booking;
+Drop Table BroucherRequest;
+Drop Table Tour;
+Drop Table Skills;
+Drop Table Staff;
+Drop Table Activity;
+Drop Table Adventure;
+Drop Table Customer;
+
+
+prompt --------------------------------------------------------------
+prompt Task 3.2
+prompt CREATE ALL TABLES
+
+Create Table Adventure(
+AdventureCode VARCHAR2(15),
+AdventureDesc varchar2(40),
+Duration Number(5),
+Primary Key (AdventureCode)
+);
+
+Create Table Customer(
+CustomerId Number(4), 
+CustomerName varchar2(30),
+CustomerPhoneNumber Number(10),
+CustomerAddres varchar2(40),
+Primary Key(CustomerId)
+);
+
+Create Table Activity(
+ActivityCode varchar2(4),
+ActivityDescription varchar2(40),
+Primary Key(ActivityCode)
+);
+
+Create Table Staff(
+StaffId Number(4), 
+FirstName varchar2(10), 
+SurName varchar2(10),
+Primary Key(StaffId)
+);
+
+Create Table Skills(
+StaffSkills varchar2(50),
+Primary Key(StaffSkills)
+);
+
+
+Create Table BroucherRequest(
+AdventureCode VARCHAR2(15), 
+DataRequest varchar2(10), 
+DataSend varchar2(10), 
+CustomerId Number(4),
+Primary Key(AdventureCode, CustomerId),
+Foreign Key(AdventureCode) references Adventure,
+Foreign Key(CustomerId) references Customer
+);
+
+
+Create Table Tour(
+AdventureCode varchar2(15), 
+TourDate varchar2(10), 
+TourPrice varchar2(6),
+Primary Key(AdventureCode, TourDate),
+Foreign Key(AdventureCode) references Adventure
+);
+
+Create Table Booking(
+CustomerId Number(4), 
+AdventureCode varchar2(15), 
+TourDate varchar2(10),
+Primary Key(CustomerId, AdventureCode, TourDate),
+Foreign Key(CustomerId) references Customer,
+Foreign Key(AdventureCode,TourDate) references Tour
+);
+
+
+Create Table Payment(
+CustomerId Number(4),
+AdventureCode varchar2(15),
+TourDate Varchar2(10),
+PaymentDate Varchar2(10),
+PaymentAmount Number(5,2),
+Primary Key(CustomerId, AdventureCode, TourDate, PaymentDate),
+Foreign Key(CustomerId, AdventureCode, TourDate) references Booking
+);
+
+Create Table StaffAssigned(
+AdventureCode varchar2(15),
+TourDate varchar2(10),
+StaffId Number(4),
+StaffLeader varchar(2),
+StaffAssistant varchar(2),
+Primary Key(AdventureCode,TourDate,StaffId),
+Foreign Key(AdventureCode,TourDate) references Tour,
+Foreign Key(StaffId) references Staff
+);
+
+Create Table StaffSkills(
+StaffId Number(4), 
+StaffSkills varchar2(50),
+Primary Key(StaffId, StaffSkills),
+Foreign Key(StaffId) references Staff,
+Foreign Key(StaffSkills) references Skills
+);
+
+Create Table ActivityOffered(
+AdventureCode varchar2(15), 
+TourDate varchar2(10), 
+ActivityCode varchar2(4),
+Primary Key(AdventureCode, TourDate, ActivityCode),
+Foreign Key(AdventureCode, TourDate) references Tour,
+Foreign Key (ActivityCode) references Activity
+);
+
+Create Table Selection(
+AdventureCode varchar2(15), 
+TourDate varchar2(10), 
+ActivityCode varchar2(4), 
+CustomerId Number(4), 
+Primary Key(CustomerId, AdventureCode, TourDate, ActivityCode),
+Foreign Key(ActivityCode) references Activity,
+Foreign Key(CustomerId, AdventureCode, TourDate) references Booking
+);
+
+
+
+prompt --------------------------------------------------------------
+prompt Task 3.3
+prompt INSERT VALID DATA
+--INSERTING INTO ADVENTURE
+INSERT INTO Adventure(AdventureCode,AdventureDesc,Duration)
+VALUES('GR1','Great Ocean Rd Motel Adventure',3);
+
+INSERT INTO Adventure(AdventureCode,AdventureDesc,Duration)
+VALUES('GR4','Great Ocean Rd Camping Adventure',7);
+
+INSERT INTO Adventure(AdventureCode,AdventureDesc,Duration)
+VALUES('YV2','Yarra Valley Winery Getaway',2);
+
+
+INSERT INTO Adventure(AdventureCode,AdventureDesc,Duration)
+VALUES('MRG1','Murray River Golf Getaway',5);
+
+
+--INSERTING INTO cUSTOMER
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1145,'Rose Tyler','','12 Glenferrie Rd Malvern');
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1444,'Mickey Smith','','2 Red St Richmond');
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1274,'Martha Jones','','1 John St, Kew');
+
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1333,'Amy Pond','','2 Bell St Dingley');
+
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1810,'Wilfred Mott','','7 Oak Rd Hawthorn');
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1334,'Jack Harknes','','2 Bell St Dingley');
+
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1299,'Harold Saxon','','4Hill Ave Kew');
+
+
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(521,'Donna Noble ','','8 Dale St, Kew');
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1805,'Rory Darvill','','2 Red St Richmond');
+
+
+--INSERT VALUES IN ACTIVITY TABLE
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('S1','Shopping');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('S2','Surfing');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('G1','Golf Lessons');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('M1','Movies');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('P1','Pottery');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('A4','Art Tour');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('R1','Rock Climbing');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('T2','Toga Party');
+
+-- INSERT INTO SATFF
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(101,'Buffy','Summers');
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(125,'Xander','Harris');
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(174,'Rupert','Giles');
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(333,'Riley','Finn');
+
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(351,'Cordilia','Chase');
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(394,'Jonathan','Levinson');
+
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(400,'Willow','Rosenberg');
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(213,'Rupert','Giles');
+
+--INERT  INTO SKILL 
+
+INSERT INTO Skills(StaffSkills)
+VALUES('Cooking');
+
+INSERT INTO Skills(StaffSkills)
+VALUES('Bus Driver');
+
+INSERT INTO Skills(StaffSkills)
+VALUES('First Aid');
+
+INSERT INTO Skills(StaffSkills)
+VALUES('Horse Riding');
+
+INSERT INTO Skills(StaffSkills)
+VALUES('Surfing');
+
+
+INSERT INTO Skills(StaffSkills)
+VALUES('Golf');
+
+--INSERT INTO BROCHER REQUEST
+INSERT INTO BroucherRequest(AdventureCode,DataRequest,DataSend,CustomerId)
+VALUES('YV2','2013/07/16','2013/07/18',1274);
+
+INSERT INTO BroucherRequest(AdventureCode,DataRequest,DataSend,CustomerId)
+VALUES('GR1','2013/07/21','2013/07/21',1805);
+
+INSERT INTO BroucherRequest(AdventureCode,DataRequest,DataSend,CustomerId)
+VALUES('MRG1','2013/07/28','2013/08/01',1299);
+
+INSERT INTO BroucherRequest(AdventureCode,DataRequest,DataSend,CustomerId)
+VALUES('GR4','2013/08/07','2013/08/07',1810);
+
+--INSERT INTO TOUR
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+VALUES('GR1', '2013/09/18', '$580');
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+VALUES('GR1','2013/09/25', '$580');
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+VALUES('YV2', '2013/09/18', '$195' );
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+VALUES('MRG1', '2013/09/17', '$695');
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+VALUES('YV2', '2013/09/17', '$195');
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+VALUES('MRG1', '2013/09/18', '$695');
+
+
+
+--INSERT INTO BOOKING
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(1145,'GR1','2013/09/25');
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(1444,'YV2','2013/09/17');
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(1274,'YV2','2013/09/17');
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(1333,'GR1','2013/09/18');
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(1334,'GR1','2013/09/18');
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(1299,'MRG1','2013/09/18');
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(521,'MRG1','2013/09/18');
+
+
+
+--INSERT INTO PAYMENT
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1145, 'GR1', '2013/09/25', '2013/09/01', '580');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1444, 'YV2', '2013/09/17', '2013/08/03', '100');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1444, 'YV2', '2013/09/17', '2013/08/28', '95');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1274, 'YV2', '2013/09/17', '2013/08/20', '195');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1333, 'GR1', '2013/09/18', '2013/08/10', '580');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1299, 'MRG1', '2013/09/18', '2013/08/20', '195');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1334, 'GR1', '2013/09/18', '2013/08/14', '580');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(521, 'MRG1', '2013/09/18', '2013/06/15', '250');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(521, 'MRG1', '2013/09/18', '2013/07/14', '250');
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(521, 'MRG1', '2013/09/18', '2013/08/16', '195');
+
+--INSERT INTO STAFF ASSIGNED
+
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('YV2', '2013/09/17', 101, 'Y','N');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('YV2', '2013/09/17', 125, 'N','Y');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('YV2', '2013/09/17', 174, 'N','Y');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('MRG1', '2013/09/18', 351, 'Y','N');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('MRG1', '2013/09/18', 333, 'N','Y');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('GR1', '2013/09/18', 400, 'Y','N');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('GR1', '2013/09/18', 394, 'N','Y');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('GR1', '2013/09/18', 213, 'N','Y');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('GR1', '2013/09/25', 213, 'Y','N');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('GR1', '2013/09/25', 125, 'N','Y');
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('GR1', '2013/09/25', 351, 'N','Y');
+
+
+
+
+
+--INSERT INTO STAFFSKILLS
+
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(101,'Cooking');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(101,'Bus Driver');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(101,'First Aid');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(125,'Horse Riding');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(125,'Cooking');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(125,'First Aid');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(174,'Bus Driver');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(174,'First Aid');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(213,'First Aid');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(213,'Surfing');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(333,'Golf');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(333,'Bus Driver');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(351,'Golf');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(351,'Horse Riding');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(394,'First Aid');
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(400,'Bus Driver');
+
+
+--INSERT TABLE ACTIVITY OFFERED
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('YV2','2013/09/17','A4');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('YV2','2013/09/17','P1');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('YV2','2013/09/17','S1');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('MRG1','2013/09/18','M1');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('MRG1','2013/09/18','P1');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('MRG1','2013/09/18','G1');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('GR1','2013/09/18','S1');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('GR1','2013/09/18','S2');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('GR1','2013/09/25','S1');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('GR1','2013/09/25','S2');
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('GR1','2013/09/25','G1');
+
+
+--INSERT INTO SELECTION
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('GR1','2013/09/25','S2',1145);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('GR1','2013/09/18','S2',1333);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('GR1','2013/09/18','S2',1334);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('GR1','2013/09/18','S1',1334);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('YV2','2013/09/17','P1',1444);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('YV2','2013/09/17','S1',1444);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('YV2','2013/09/17','P1',1274);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('YV2','2013/09/17','A4',1274);
+
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('MRG1','2013/09/18','G1',1299);
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('MRG1','2013/09/18','G1',521);
+
+
+prompt --------------------------------------------------------------
+prompt Task 4.1
+prompt TEST CONSTRAINTS HERE WITH STATEMENTS THAT MUST FAIL
+INSERT INTO Adventure(AdventureCode,AdventureDesc,Duration)
+VALUES('GR1','Euro Trip',3);
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+VALUES(1145,'Bipin Bhattarai','','12 Glenferrie Rd Malvern');
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+VALUES('S1','swimming');
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+VALUES(101,'SAH','Rabindra');
+
+INSERT INTO Skills(StaffSkills)
+VALUES('Cooking');
+
+INSERT INTO BroucherRequest(AdventureCode,DataRequest,DataSend,CustomerId)
+VALUES('YV2','2013/07/16','2006/06/06',1274);
+
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+VALUES('GR1', '2013/09/18', '$1080');
+
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+VALUES(1145,'GR1','2013/09/25');
+
+INSERT INTO Payment(CustomerId, AdventureCode, TourDate, PaymentDate, PaymentAmount)
+VALUES(1145, 'GR1', '2013/09/25', '2013/09/01', '$1111');
+
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+VALUES('YV2', '2013/09/17', 101, 'N','N');
+
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+VALUES(101,'Cooking');
+
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+VALUES('YV2','2013/09/17','A3');
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+VALUES('SOS','2013/09/25','S2',1145);
+
+
+
+
+prompt --------------------------------------------------------------
+prompt QUERY 1
+SELECT CUSTOMERID,CUSTOMERNAME,CUSTOMERADDRES FROM CUSTOMER ORDER BY CUSTOMERID;
+prompt --------------------------------------------------------------
+
+prompt QUERY 2
+SELECT A.AdventureCode, SA.TourDate, S.FirstName || ' ' || S.SurName As StaffName
+FROM Adventure A
+INNER JOIN StaffAssigned SA
+ON A.AdventureCode = SA.AdventureCode
+INNER JOIN Staff S
+ON SA.StaffId = S.StaffId
+ORDER BY A.AdventureCode, SA.TourDate, StaffName;
+
+prompt --------------------------------------------------------------
+prompt QUERY 3
+
+SELECT B.ADVENTURECODE,B.TOURDATE,B.CUSTOMERID,C.CUSTOMERNAME
+FROM BOOKING B
+INNER JOIN CUSTOMER C
+ON B.CUSTOMERID=C.CUSTOMERID
+ORDER BY B.ADVENTURECODE,B.TOURDATE,B.CUSTOMERID ;
+
+
+prompt --------------------------------------------------------------
+prompt QUERY 4
+
+SELECT A.AdventureCode, B.TourDate, B.CustomerId, C.CustomerName
+FROM Adventure A
+INNER JOIN Booking B
+ON A.AdventureCode = B.AdventureCode
+INNER JOIN Customer C
+ON B.CustomerId = C.CustomerId
+ORDER BY A.AdventureCode, B.TourDate, B.CustomerId;
+
+prompt --------------------------------------------------------------
+prompt QUERY 5
+SELECT A.AdventureCode, AO.TourDate, B.CustomerId, C.CustomerName, AO.ActivityCode,A.ActivityDescription
+FROM Adventure A
+INNER JOIN ActivityOffered AO
+ON A.AdventureCode = AO.AdventureCode
+INNER JOIN Activity A
+ON AO.ActivityCode = A.ActivityCode
+INNER JOIN Booking B
+ON A.AdventureCode = B.AdventureCode
+INNER JOIN Customer C
+ON B.CustomerId = C.CustomerId
+ORDER BY A.AdventureCode, AO.TourDate, B.CustomerId, AO.ActivityCode;
+prompt --------------------------------------------------------------
+
+
+
+
+prompt --------------------------------------------------------------
+prompt QUERY 6
+
+SELECT B.CustomerId, C.CustomerName, Sum(PaymentAmount) As "Total Payment"
+FROM Customer C
+Left Outer Join Booking B
+ON  C.CustomerId = B.CustomerId
+Inner Join Payment P
+ON B.CustomerId = P.CustomerId
+GROUP BY B.CustomerId, C.CustomerName
+ORDER BY B.CustomerId;
+
+prompt --------------------------------------------------------------
+prompt QUERY 7
+
+SELECT AdventureCode As "Tour Code" ,Sum(PaymentAmount) As "Total Payment"
+FROM Payment
+GROUP BY AdventureCode
+ORDER BY AdventureCode;
+
+
+prompt --------------------------------------------------------------
+prompt QUERY 8
+
+SELECT A.ActivityCode, A.ActivityDescription, Count(S.ActivityCode) 
+FROM Activity A
+LEFT OUTER JOIN Selection S
+ON A.ActivityCode = S.ActivityCode
+GROUP BY A.ActivityCode, A.ActivityDescription
+ORDER BY Count(S.ActivityCode) DESC;
+
+prompt --------------------------------------------------------------
+prompt QUERY 9
+SELECT T.ADVENTURECODE AS"ADVENTURE CODE",A.ADVENTUREDESC AS"DESCRIPTION" ,MAX(T.TOURPRICE)  AS "LATEST PRICE"
+FROM TOUR T
+INNER JOIN ADVENTURE A
+ON A.ADVENTURECODE=T.ADVENTURECODE
+GROUP BY T.ADVENTURECODE,A.ADVENTUREDESC
+ORDER BY T.ADVENTURECODE ;
+prompt --------------------------------------------------------------
+prompt QUERY 10
+SELECT B.CUSTOMERID,C.CUSTOMERNAME,B.ADVENTURECODE,B.TOURDATE
+FROM BOOKING B INNER JOIN CUSTOMER C ON C.CUSTOMERID=B.CUSTOMERID 
+INNER JOIN BROUCHERREQUEST BR ON B.CUSTOMERID=BR.CUSTOMERID;
+prompt --------------------------------------------------------------
+prompt END OF OUTPUT SECTION

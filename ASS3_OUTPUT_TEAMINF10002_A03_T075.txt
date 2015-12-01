@@ -1,0 +1,545 @@
+START OF OUTPUT SECTION
+
+Student ID: 4949773
+
+Student Name: RONAK SHAH
+
+Student ID: 4963571
+
+Student Name: RABINDRA SAH
+
+Student ID: 6281192
+
+Student Name: BRIAN KEE WIN CHIA
+
+--------------------------------------------------------------
+
+Task 3.1
+
+DROP ALL TABLES
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+--------------------------------------------------------------
+
+Task 3.2
+
+CREATE ALL TABLES
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+OK. 0 rows
+
+--------------------------------------------------------------
+
+Task 3.3
+
+INSERT VALID DATA
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+OK. 1 rows
+
+--------------------------------------------------------------
+
+Task 4.1
+
+TEST CONSTRAINTS HERE WITH STATEMENTS THAT MUST FAIL
+
+INSERT INTO Adventure(AdventureCode,AdventureDesc,Duration)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716798) violated
+
+INSERT INTO CUSTOMER(CustomerId,CustomerName,CustomerPhoneNumber,CustomerAddres)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716799) violated
+
+INSERT INTO Activity(ActivityCode,ActivityDescription)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716800) violated
+
+INSERT INTO Staff(StaffId,FirstName,SurName)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716801) violated
+
+INSERT INTO Skills(StaffSkills)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716802) violated
+
+INSERT INTO BroucherRequest(AdventureCode,DataRequest,DataSend,CustomerId)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716803) violated
+
+INSERT INTO Tour(AdventureCode, TourDate, TourPrice)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716806) violated
+
+INSERT INTO Booking(CustomerId, AdventureCode, TourDate)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716808) violated
+
+VALUES(1145, 'GR1', '2013/09/25', '2013/09/01', '$1111')
+                                                *
+Error at line 2:
+ORA-01722: invalid number
+
+INSERT INTO StaffAssigned(AdventureCode, TourDate, StaffId, StaffLeader, StaffAssistant)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716813) violated
+
+INSERT INTO StaffSkills(StaffId, StaffSkills)
+*
+Error at line 1:
+ORA-00001: unique constraint (S4963571.SYS_C001716816) violated
+
+INSERT INTO ActivityOffered(AdventureCode, TourDate, ActivityCode)
+*
+Error at line 1:
+ORA-02291: integrity constraint (S4963571.SYS_C001716821) violated - parent key not found
+
+INSERT INTO Selection(AdventureCode,TourDate,ActivityCode,CustomerId)
+*
+Error at line 1:
+ORA-02291: integrity constraint (S4963571.SYS_C001716824) violated - parent key not found
+
+--------------------------------------------------------------
+
+QUERY 1
+
+SELECT CUSTOMERID,CUSTOMERNAME,CUSTOMERADDRES FROM CUSTOMER ORDER BY CUSTOMERID
+CUSTOMERID	 CUSTOMERNAME	 CUSTOMERADDRES
+521		Donna Noble	8 Dale St, Kew
+1145		Rose Tyler	12 Glenferrie Rd Malvern
+1274		Martha Jones	1 John St, Kew
+1299		Harold Saxon	4Hill Ave Kew
+1333		Amy Pond	2 Bell St Dingley
+1334		Jack Harknes	2 Bell St Dingley
+1444		Mickey Smith	2 Red St Richmond
+1805		Rory Darvill	2 Red St Richmond
+1810		Wilfred Mott	7 Oak Rd Hawthorn
+OK. 9 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 2
+
+SELECT A.AdventureCode, SA.TourDate, S.FirstName || ' ' || S.SurName As StaffName FROM Adventure A INNER JOIN StaffAssigned SA ON A.AdventureCode = SA.AdventureCode INNER JOIN Staff S ON SA.StaffId = S.StaffId ORDER BY A.AdventureCode, SA.TourDate, StaffName
+ADVENTURECODE	 TOURDATE	 STAFFNAME
+GR1		2013/09/18	Jonathan Levinson
+GR1		2013/09/18	Rupert Giles
+GR1		2013/09/18	Willow Rosenberg
+GR1		2013/09/25	Cordilia Chase
+GR1		2013/09/25	Rupert Giles
+GR1		2013/09/25	Xander Harris
+MRG1		2013/09/18	Cordilia Chase
+MRG1		2013/09/18	Riley Finn
+YV2		2013/09/17	Buffy Summers
+YV2		2013/09/17	Rupert Giles
+YV2		2013/09/17	Xander Harris
+OK. 11 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 3
+
+SELECT B.ADVENTURECODE,B.TOURDATE,B.CUSTOMERID,C.CUSTOMERNAME FROM BOOKING B INNER JOIN CUSTOMER C ON B.CUSTOMERID=C.CUSTOMERID ORDER BY B.ADVENTURECODE,B.TOURDATE,B.CUSTOMERID
+ADVENTURECODE	 TOURDATE	 CUSTOMERID	 CUSTOMERNAME
+GR1		2013/09/18	1333		Amy Pond
+GR1		2013/09/18	1334		Jack Harknes
+GR1		2013/09/25	1145		Rose Tyler
+MRG1		2013/09/18	521		Donna Noble
+MRG1		2013/09/18	1299		Harold Saxon
+YV2		2013/09/17	1274		Martha Jones
+YV2		2013/09/17	1444		Mickey Smith
+OK. 7 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 4
+
+SELECT A.AdventureCode, B.TourDate, B.CustomerId, C.CustomerName FROM Adventure A INNER JOIN Booking B ON A.AdventureCode = B.AdventureCode INNER JOIN Customer C ON B.CustomerId = C.CustomerId ORDER BY A.AdventureCode, B.TourDate, B.CustomerId
+ADVENTURECODE	 TOURDATE	 CUSTOMERID	 CUSTOMERNAME
+GR1		2013/09/18	1333		Amy Pond
+GR1		2013/09/18	1334		Jack Harknes
+GR1		2013/09/25	1145		Rose Tyler
+MRG1		2013/09/18	521		Donna Noble
+MRG1		2013/09/18	1299		Harold Saxon
+YV2		2013/09/17	1274		Martha Jones
+YV2		2013/09/17	1444		Mickey Smith
+OK. 7 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 5
+
+SELECT A.AdventureCode, AO.TourDate, B.CustomerId, C.CustomerName, AO.ActivityCode,A.ActivityDescription FROM Adventure A INNER JOIN ActivityOffered AO ON A.AdventureCode = AO.AdventureCode INNER JOIN Activity A ON AO.ActivityCode = A.ActivityCode INNER JOIN Booking B ON A.AdventureCode = B.AdventureCode INNER JOIN Customer C ON B.CustomerId = C.CustomerId ORDER BY A.AdventureCode, AO.TourDate, B.CustomerId, AO.ActivityCode
+ADVENTURECODE	 TOURDATE	 CUSTOMERID	 CUSTOMERNAME	 ACTIVITYCODE	 ACTIVITYDESCRIPTION
+GR1		2013/09/18	1145		Rose Tyler		S1	Shopping
+GR1		2013/09/18	1145		Rose Tyler		S2	Surfing
+GR1		2013/09/18	1333		Amy Pond		S1	Shopping
+GR1		2013/09/18	1333		Amy Pond		S2	Surfing
+GR1		2013/09/18	1334		Jack Harknes		S1	Shopping
+GR1		2013/09/18	1334		Jack Harknes		S2	Surfing
+GR1		2013/09/25	1145		Rose Tyler		G1	Golf Lessons
+GR1		2013/09/25	1145		Rose Tyler		S1	Shopping
+GR1		2013/09/25	1145		Rose Tyler		S2	Surfing
+GR1		2013/09/25	1333		Amy Pond		G1	Golf Lessons
+GR1		2013/09/25	1333		Amy Pond		S1	Shopping
+GR1		2013/09/25	1333		Amy Pond		S2	Surfing
+GR1		2013/09/25	1334		Jack Harknes		G1	Golf Lessons
+GR1		2013/09/25	1334		Jack Harknes		S1	Shopping
+GR1		2013/09/25	1334		Jack Harknes		S2	Surfing
+MRG1		2013/09/18	521		Donna Noble		G1	Golf Lessons
+MRG1		2013/09/18	521		Donna Noble		M1	Movies
+MRG1		2013/09/18	521		Donna Noble		P1	Pottery
+MRG1		2013/09/18	1299		Harold Saxon		G1	Golf Lessons
+MRG1		2013/09/18	1299		Harold Saxon		M1	Movies
+MRG1		2013/09/18	1299		Harold Saxon		P1	Pottery
+YV2		2013/09/17	1274		Martha Jones		A4	Art Tour
+YV2		2013/09/17	1274		Martha Jones		P1	Pottery
+YV2		2013/09/17	1274		Martha Jones		S1	Shopping
+YV2		2013/09/17	1444		Mickey Smith		A4	Art Tour
+YV2		2013/09/17	1444		Mickey Smith		P1	Pottery
+YV2		2013/09/17	1444		Mickey Smith		S1	Shopping
+OK. 27 rows selected.
+
+--------------------------------------------------------------
+
+--------------------------------------------------------------
+
+QUERY 6
+
+SELECT B.CustomerId, C.CustomerName, Sum(PaymentAmount) As "Total Payment" FROM Customer C Left Outer Join Booking B ON C.CustomerId = B.CustomerId Inner Join Payment P ON B.CustomerId = P.CustomerId GROUP BY B.CustomerId, C.CustomerName ORDER BY B.CustomerId
+CUSTOMERID	 CUSTOMERNAME	 Total Payment
+521		Donna Noble	695
+1145		Rose Tyler	580
+1274		Martha Jones	195
+1299		Harold Saxon	195
+1333		Amy Pond	580
+1334		Jack Harknes	580
+1444		Mickey Smith	195
+OK. 7 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 7
+
+SELECT AdventureCode As "Tour Code" ,Sum(PaymentAmount) As "Total Payment" FROM Payment GROUP BY AdventureCode ORDER BY AdventureCode
+Tour Code	 Total Payment
+GR1			1740
+MRG1			890
+YV2			390
+OK. 3 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 8
+
+SELECT A.ActivityCode, A.ActivityDescription, Count(S.ActivityCode) FROM Activity A LEFT OUTER JOIN Selection S ON A.ActivityCode = S.ActivityCode GROUP BY A.ActivityCode, A.ActivityDescription ORDER BY Count(S.ActivityCode) DESC
+ACTIVITYCODE	 ACTIVITYDESCRIPTION	 COUNT(S.ACTIVITYCODE)
+S2			Surfing			3
+P1			Pottery			2
+G1			Golf Lessons		2
+S1			Shopping		2
+A4			Art Tour		1
+M1			Movies			0
+R1			Rock Climbing		0
+T2			Toga Party		0
+OK. 8 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 9
+
+SELECT T.ADVENTURECODE AS"ADVENTURE CODE",A.ADVENTUREDESC AS"DESCRIPTION" ,MAX(T.TOURPRICE) AS "LATEST PRICE" FROM TOUR T INNER JOIN ADVENTURE A ON A.ADVENTURECODE=T.ADVENTURECODE GROUP BY T.ADVENTURECODE,A.ADVENTUREDESC ORDER BY T.ADVENTURECODE
+ADVENTURE CODE		 DESCRIPTION	 	LATEST PRICE
+GR1		Great Ocean Rd Motel Adventure	$580
+MRG1		Murray River Golf Getaway	$695
+YV2		Yarra Valley Winery Getaway	$195
+OK. 3 rows selected.
+
+--------------------------------------------------------------
+
+QUERY 10
+
+SELECT B.CUSTOMERID,C.CUSTOMERNAME,B.ADVENTURECODE,B.TOURDATE FROM BOOKING B INNER JOIN CUSTOMER C ON C.CUSTOMERID=B.CUSTOMERID INNER JOIN BROUCHERREQUEST BR ON B.CUSTOMERID=BR.CUSTOMERID
+CUSTOMERID	 CUSTOMERNAME	 ADVENTURECODE	 TOURDATE
+1274		Martha Jones	    YV2		2013/09/17
+1299		Harold Saxon	   MRG1		2013/09/18
+OK. 2 rows selected.
+
+--------------------------------------------------------------
+
+END OF OUTPUT SECTION
+
